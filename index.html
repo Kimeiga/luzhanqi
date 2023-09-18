@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Luzhanqi Four-Player Board</title>
+	<!-- import board.svg -->
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			margin: 0;
+			display: flex;
+			align-items: center;
+			height: 100vh;
+			background: black;
+			color: white;
+		}
+
+		#board {
+			height: 100vmin;
+			width: 100vmin;
+			margin: 0 auto;
+		}
+	</style>
+</head>
+
+<body>
+	<img id="board" src="./board.svg" alt="board">
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="client.js"></script>
+
+	<script>
+		// make 40 by 40 board 2d array
+		let board = [];
+		for (let i = 0; i < 40; i++) {
+			board[i] = [];
+			for (let j = 0; j < 40; j++) {
+				board[i][j] = 'x';
+			}
+		}
+
+	</script>
+</body>
+
+</html>

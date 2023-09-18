@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Luzhanqi Four-Player Board</title>
+	<!-- <link rel="stylesheet" href="styles.css"> -->
+
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			margin: 0;
+			display: flex;
+			align-items: center;
+			height: 100vh;
+		}
+
+		#board {
+			display: grid;
+			grid-template-areas:
+				". n ."
+				"w c e"
+				". s .";
+
+			grid-template-columns: 1fr 1fr 1fr;
+			grid-template-rows: 1fr 1fr 1fr;
+
+			height: 100vmin;
+			width: 100vmin;
+
+
+			margin: 0 auto;
+		}
+
+		#n {
+			grid-area: n;
+
+			display: grid;
+			grid-template-areas:
+				". . ."
+				". back-row ."
+				". inside .";
+
+			grid-template-columns: 1fr 4fr 1fr;
+			grid-template-rows: 1fr 1fr 4fr;
+		}
+
+		#w {
+			grid-area: w;
+
+			display: grid;
+			grid-template-areas:
+				". . ."
+				". back-row inside"
+				". . .";
+
+			grid-template-columns: 1fr 1fr 4fr;
+			grid-template-rows: 1fr 4fr 1fr;
+		}
+
+		#c {
+			grid-area: c;
+
+			display: grid;
+
+			grid-template-rows: 1fr 2fr 2fr 1fr;
+			grid-template-columns: 1fr 2fr 2fr 1fr;
+		}
+
+		#e {
+			grid-area: e;
+
+			display: grid;
+			grid-template-areas:
+				". . ."
+				"inside back-row ."
+				". . .";
+
+			grid-template-columns: 4fr 1fr 1fr;
+			grid-template-rows: 1fr 4fr 1fr;
+
+		}
+
+		#s {
+			grid-area: s;
+
+			display: grid;
+			grid-template-areas:
+				". inside ."
+				". back-row ."
+				". . .";
+
+			grid-template-columns: 1fr 4fr 1fr;
+			grid-template-rows: 4fr 1fr 1fr;
+		}
+
+		.home-vertical {
+			display: grid;
+			/* grid columns 5 equal */
+			grid-template-columns: repeat(5, 1fr);
+			grid-template-rows: repeat(5, 1fr);
+		}
+
+		.home-horizontal {
+			display: grid;
+			grid-template-columns: repeat(5, 1fr);
+			grid-template-rows: repeat(5, 1fr);
+		}
+
+		/* 
+		/* For the north and south sections */
+		.inside {
+			grid-area: inside;
+			background:
+				/* Diagonal lines */
+				linear-gradient(45deg, transparent 49.5%, brown 49.5%, brown 50.5%, transparent 50.5%),
+				linear-gradient(-45deg, transparent 49.5%, brown 49.5%, brown 50.5%, transparent 50.5%),
+
+				/* Diamond shape */
+				linear-gradient(45deg, transparent 74.5%, brown 74.5%, brown 75.5%, transparent 75.5%),
+				linear-gradient(-45deg, transparent 74.5%, brown 74.5%, brown 75.5%, transparent 75.5%),
+				linear-gradient(-135deg, transparent 74.5%, brown 74.5%, brown 75.5%, transparent 75.5%),
+				linear-gradient(135deg, transparent 74.5%, brown 74.5%, brown 75.5%, transparent 75.5%),
+
+				/* Center lines */
+				linear-gradient(to right, transparent 49.5%, brown 49.5%, brown 50.5%, transparent 50.5%),
+				linear-gradient(to bottom, transparent 49.5%, brown 49.5%, brown 50.5%, transparent 50.5%),
+
+				/* 1/4 lines */
+				linear-gradient(to right, transparent 24.5%, brown 24.5%, brown 25.5%, transparent 25.5%),
+				linear-gradient(to right, transparent 74.5%, brown 74.5%, brown 75.5%, transparent 75.5%),
+				linear-gradient(to bottom, transparent 24.5%, brown 24.5%, brown 25.5%, transparent 25.5%),
+				linear-gradient(to bottom, transparent 74.5%, brown 74.5%, brown 75.5%, transparent 75.5%);
+			/* clip-path: polygon(0 0, 100% 0, 100% 20%, 0 20%); */
+			/* Initially covering the top row */
+
+			border: 1px solid black;
+		}
+
+		.back-row {
+			grid-area: back-row;
+			display: grid;
+		}
+
+		.back-row.v {
+			grid-template-columns: repeat(4, 1fr);
+		}
+
+		.back-row.h {
+			grid-template-rows: repeat(4, 1fr);
+
+		}
+
+		.back-row-sq {
+			border: 1px solid brown;
+		}
+
+		#n,
+		#w,
+		#e,
+		#s {
+			position: relative;
+		}
+
+		#c * {
+			border: 1px solid black;
+		}
+
+		#nw {
+			border-radius: 0 0 50px 0;
+			border-top: transparent;
+			border-left: transparent;
+
+		}
+
+		#ne {
+			border-radius: 0 0 0 50px;
+			border-top: transparent;
+			border-right: transparent;
+
+
+		}
+
+		#sw {
+			border-radius: 0 50px 0 0;
+			border-bottom: transparent;
+			border-left: transparent;
+
+		}
+
+		#se {
+			border-radius: 50px 0 0 0;
+			border-bottom: transparent;
+			border-right: transparent;
+
+		}
+	</style>
+</head>
+
+<body>
+	<div id="board">
+		<div id="n">
+			<div class="back-row v">
+				<div class="back-row-sq"></div>
+				<div class="back-row-sq"></div>
+				<div class="back-row-sq"></div>
+				<div class="back-row-sq"></div>
+			</div>
+			<div class="inside v">
+				<div class="content">
+					<!-- Your actual content here -->
+				</div>
+			</div>
+		</div>
+		<div id="w">
+			<div class="back-row h">
+				<div class="back-row-sq"></div>
+				<div class="back-row-sq"></div>
+				<div class="back-row-sq"></div>
+				<div class="back-row-sq"></div>
+			</div>
+			<div class="inside h">
+				<div class="content">
+					<!-- Your actual content here -->
+				</div>
+			</div>
+		</div>
+		<div id="c">
+			<div id="nw"></div>
+			<div></div>
+			<div></div>
+			<div id="ne"></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div id="sw"></div>
+			<div></div>
+			<div></div>
+			<div id="se"></div>
+		</div>
+		<div id="e">
+			<div class="back-row h">
+				<div class="back-row-sq"></div>
+				<div class="back-row-sq"></div>
+				<div class="back-row-sq"></div>
+				<div class="back-row-sq"></div>
+			</div>
+			<div class="inside h">
+				<div class="content">
+					<!-- Your actual content here -->
+				</div>
+			</div>
+		</div>
+		<div id="s">
+			<div class="back-row v">
+				<div class="back-row-sq"></div>
+				<div class="back-row-sq"></div>
+				<div class="back-row-sq"></div>
+				<div class="back-row-sq"></div>
+			</div>
+			<div class="inside v">
+				<div class="content">
+					<!-- Your actual content here -->
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

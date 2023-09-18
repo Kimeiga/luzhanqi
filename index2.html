@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Luzhanqi Four-Player Board</title>
+	<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+	<div class="board">
+		<div class="player-territory">
+			<!-- You can repeat the following structure for each piece/space in the player's territory -->
+			<div class="space post"></div>
+			<!-- ... -->
+		</div>
+
+		<div class="central-space">
+			<!-- Spaces shared between players -->
+			<!-- ... -->
+		</div>
+
+		<!-- Repeat player territory for other players -->
+		<div class="player-territory">
+			<!-- ... -->
+		</div>
+	</div>
+
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="client.js"></script>
+</body>
+
+</html>
